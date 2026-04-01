@@ -9,7 +9,7 @@ arch:
   - amd64
   - aarch64
 devices:
-  - /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_ABSCDIG1-if00-port0
+  - /dev/ttyUSB1
 options:
   serial_port: /dev/ttyUSB1
   baudrate: 115200
