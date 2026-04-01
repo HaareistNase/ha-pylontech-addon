@@ -1,9 +1,11 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-# Python Pakete installieren (die Base-Images haben oft schon Python)
-RUN pip3 install --no-cache-dir --break-system-packages pyserial paho-mqtt
+# Installiere Python und pip
+RUN apk add --no-cache python3 py3-pip
 
-# Kopiere das Skript
+# Installiere Python-Pakete
+RUN pip3 install --no-cache-dir pyserial paho-mqtt
+
 COPY run.py /
 CMD ["python3", "/run.py"]
