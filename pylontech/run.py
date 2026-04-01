@@ -1,6 +1,5 @@
 import time
 import json
-import serial
 import paho.mqtt.client as mqtt
 from pylontech import Pylontech
 import os
@@ -13,8 +12,8 @@ MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
 client = mqtt.Client()
 client.connect(MQTT_HOST, 1883, 60)
 
-ser = serial.Serial(SERIAL_PORT, baudrate=BAUDRATE, timeout=2)
-battery = Pylontech(ser)
+# ✅ FIX
+battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
 
 while True:
     try:
