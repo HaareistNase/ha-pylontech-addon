@@ -1,13 +1,10 @@
 name: Pylontech Reader
-version: "1.9"
+version: "2.0"
 slug: pylontech
 description: Read Pylontech battery via USB (FTDI)
 startup: services
 boot: auto
 host_network: true
-host_dbus: true
-privileged:
-  - SYS_RAWIO
 arch:
   - amd64
   - aarch64
