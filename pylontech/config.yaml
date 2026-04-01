@@ -5,6 +5,12 @@ description: Read Pylontech battery via USB (FTDI)
 startup: services
 boot: auto
 host_network: true
+arch:
+  - amd64
+  - aarch64
+  - armv7
+  - armhf
+  - i386
 devices:
   - /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_ABSCDIG1-if00-port0
 options:
