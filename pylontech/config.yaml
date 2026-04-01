@@ -1,5 +1,5 @@
 name: Pylontech Reader
-version: "1.4"
+version: "1.5"
 slug: pylontech
 description: Read Pylontech battery via USB (FTDI)
 startup: services
