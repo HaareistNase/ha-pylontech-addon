@@ -18,6 +18,11 @@ client.connect(MQTT_HOST, 1883, 60)
 
 battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
 
+DEBUG = os.getenv("CONFIG_DEBUG", "false").lower() == "true"
+if DEBUG:
+    print(f"CONFIG_SERIAL_PORT={SERIAL_PORT}")
+    print(f"All CONFIG_* env vars:", {k:v for k,v in os.environ.items() if k.startswith('CONFIG_')})
+
 while True:
     try:
         data = battery.get_values()
