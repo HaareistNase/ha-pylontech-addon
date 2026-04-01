@@ -4,15 +4,18 @@ import paho.mqtt.client as mqtt
 from pylontech import Pylontech
 import os
 
-SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/ttyUSB1")
-BAUDRATE = int(os.getenv("BAUDRATE", "115200"))
-MQTT_HOST = os.getenv("MQTT_HOST", "core-mosquitto")
-MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
+# FIX: Home Assistant übergibt Konfiguration als CONFIG_* Umgebungsvariablen
+SERIAL_PORT = os.getenv("CONFIG_SERIAL_PORT", "/dev/ttyUSB1")
+BAUDRATE = int(os.getenv("CONFIG_BAUDRATE", "115200"))
+MQTT_HOST = os.getenv("CONFIG_MQTT_HOST", "core-mosquitto")
+MQTT_TOPIC = os.getenv("CONFIG_MQTT_TOPIC", "pylontech/battery")
 
-client = mqtt.Client()
+# Optional: Debug-Ausgabe um zu sehen, welche Konfiguration verwendet wird
+print(f"Using configuration: PORT={SERIAL_PORT}, BAUDRATE={BAUDRATE}, HOST={MQTT_HOST}")
+
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)  # Veraltete API vermeiden
 client.connect(MQTT_HOST, 1883, 60)
 
-# ✅ FIX
 battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
 
 while True:
