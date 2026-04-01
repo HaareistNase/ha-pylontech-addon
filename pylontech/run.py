@@ -5,6 +5,13 @@ from pylontech import Pylontech
 import os
 import sys
 
+# Ganz am Anfang, vor allem anderen
+print("All environment variables:")
+for key, value in os.environ.items():
+    if 'SERIAL' in key or 'PORT' in key or 'CONFIG' in key:
+        print(f"  {key}={value}")
+        
+
 # Konfiguration aus Home Assistant Add-on Umgebungsvariablen
 SERIAL_PORT = os.getenv("CONFIG_SERIAL_PORT", "/dev/ttyUSB1")
 BAUDRATE = int(os.getenv("CONFIG_BAUDRATE", "115200"))
