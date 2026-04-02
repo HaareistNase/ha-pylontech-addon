@@ -1,4 +1,4 @@
-print("Version 1.8")
+print("Version 1.9")
 import time
 import json
 import paho.mqtt.client as mqtt
