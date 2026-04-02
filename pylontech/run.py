@@ -14,13 +14,15 @@ MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
 client = mqtt.Client(protocol=mqtt.MQTTv311)
 client.connect(MQTT_HOST, 1883, 60)
 
-print("Trying to read battery...")
-data = battery.get_values()
-print("DATA:", data)
+
 
 
 # ✅ FIX
 battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
+
+print("Trying to read battery...")
+data = battery.get_values()
+print("DATA:", data)
 
 while True:
     try:
