@@ -1,13 +1,7 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM python:3.11-slim
 
-# Install Python
-RUN apk add --no-cache python3 py3-pip
+RUN pip install python-pylontech paho-mqtt pyserial
 
-# Install Python packages
-RUN pip3 install --break-system-packages pyserial paho-mqtt
+COPY run.py /run.py
 
-# Copy script
-COPY run.py /
-
-CMD ["python3", "/run.py"]
+CMD ["python", "/run.py"]
