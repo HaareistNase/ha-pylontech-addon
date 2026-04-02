@@ -5,6 +5,7 @@ import json
 import paho.mqtt.client as mqtt
 from pylontech import Pylontech
 import os
+import serial
 
 SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/ttyUSB0")
 BAUDRATE = int(os.getenv("BAUDRATE", "115200"))
@@ -19,10 +20,6 @@ client.connect(MQTT_HOST, 1883, 60)
 
 # ✅ FIX
 battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
-
-print("Trying to read battery...")
-data = battery.get_values()
-print("DATA:", data)
 
 while True:
     try:
@@ -45,3 +42,8 @@ while True:
 
     time.sleep(5)
 
+ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=2)
+
+while True:
+    data = ser.readline()
+    print("RAW:", data)
