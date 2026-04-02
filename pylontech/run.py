@@ -1,4 +1,4 @@
-print("Version 2.7")
+print("Version 2.8")
 
 import time
 import json
@@ -41,9 +41,3 @@ while True:
         print("Error:", e)
 
     time.sleep(5)
-
-ser = serial.Serial(SERIAL_PORT, BAUDRATE, timeout=2)
-
-while True:
-    data = ser.readline()
-    print("RAW:", data)
