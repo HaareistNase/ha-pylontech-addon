@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 from pylontech import Pylontech
 import os
 
-SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/ttyUSB1")
+SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/ttyUSB0")
 BAUDRATE = int(os.getenv("BAUDRATE", "115200"))
 MQTT_HOST = os.getenv("MQTT_HOST", "core-mosquitto")
 MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
