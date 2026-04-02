@@ -5,13 +5,21 @@ description: Read Pylontech battery via USB (FTDI)
 startup: services
 boot: auto
 host_network: true
+
+arch:
+  - amd64
+  - aarch64
+
+
 devices:
   - /dev/ttyUSB0
+
 options:
   serial_port: /dev/ttyUSB0
   baudrate: 115200
   mqtt_host: core-mosquitto
   mqtt_topic: pylontech/battery
+
 schema:
   serial_port: str
   baudrate: int
