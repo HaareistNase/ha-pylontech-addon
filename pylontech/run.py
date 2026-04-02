@@ -1,4 +1,4 @@
-print("Version 2.6")
+print("Version 2.7")
 
 import time
 import json
