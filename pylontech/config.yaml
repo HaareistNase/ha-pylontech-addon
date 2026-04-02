@@ -1,5 +1,5 @@
 name: Pylontech Reader
-version: "1.0"
+version: "1.4"
 slug: pylontech
 description: Read Pylontech battery via USB (FTDI)
 startup: services
@@ -10,12 +10,11 @@ arch:
   - amd64
   - aarch64
 
-
 devices:
-  - /dev/ttyUSB0
+  - /dev/ttyUSB1
 
 options:
-  serial_port: /dev/ttyUSB0
+  serial_port: /dev/ttyUSB1
   baudrate: 115200
   mqtt_host: core-mosquitto
   mqtt_topic: pylontech/battery
