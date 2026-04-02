@@ -1,5 +1,5 @@
 name: Pylontech Reader
-version: "1.5"
+version: "1.6"
 slug: pylontech
 description: Read Pylontech battery via USB (FTDI)
 startup: services
@@ -25,5 +25,4 @@ schema:
   mqtt_host: str
   mqtt_topic: str
 
-privileged:
-  - SYS_RAWIO
+full_access: true
