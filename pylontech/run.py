@@ -1,4 +1,5 @@
-print("Version 2.0")
+print("Version 2.5")
+
 import time
 import json
 import paho.mqtt.client as mqtt
@@ -10,8 +11,13 @@ BAUDRATE = int(os.getenv("BAUDRATE", "115200"))
 MQTT_HOST = os.getenv("MQTT_HOST", "core-mosquitto")
 MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
 
-client = mqtt.Client()
+client = mqtt.Client(protocol=mqtt.MQTTv311)
 client.connect(MQTT_HOST, 1883, 60)
+
+print("Trying to read battery...")
+data = battery.get_values()
+print("DATA:", data)
+
 
 # ✅ FIX
 battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
@@ -36,3 +42,4 @@ while True:
         print("Error:", e)
 
     time.sleep(5)
+
