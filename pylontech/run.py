@@ -4,7 +4,7 @@ import paho.mqtt.client as mqtt
 from pylontech import Pylontech
 import os
 
-SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/ttyUSB0")
+SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_ABSCDIG1-if00-port0")
 BAUDRATE = int(os.getenv("BAUDRATE", "115200"))
 MQTT_HOST = os.getenv("MQTT_HOST", "core-mosquitto")
 MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
@@ -12,6 +12,7 @@ MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
 client = mqtt.Client()
 client.connect(MQTT_HOST, 1883, 60)
 
+# ✅ FIX
 battery = Pylontech(SERIAL_PORT, baudrate=BAUDRATE)
 
 while True:
@@ -24,6 +25,7 @@ while True:
             "current": data.current,
             "power": data.voltage * data.current,
             "temperature": data.temperature,
+            "capacity": getattr(data, "capacity", None)
         }
 
         client.publish(MQTT_TOPIC, json.dumps(payload), retain=True)
