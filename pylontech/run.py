@@ -8,7 +8,7 @@ import os
 import serial
 
 SERIAL_PORT = os.getenv("SERIAL_PORT", "/dev/ttyUSB0")
-BAUDRATE = int(os.getenv("BAUDRATE", "115200"))
+BAUDRATE = int(os.getenv("BAUDRATE", "9600"))
 MQTT_HOST = os.getenv("MQTT_HOST", "core-mosquitto")
 MQTT_TOPIC = os.getenv("MQTT_TOPIC", "pylontech/battery")
 
